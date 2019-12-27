@@ -32,15 +32,10 @@
 
 /* jshint forin:true, noarg:true, noempty:true, eqeqeq:true, strict:true,
    undef:true, unused:true, curly:true, browser:true, indent:2, maxerr:50 */
-/* global _ */
-
 
 const b64_table = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
 
 const XORCipher {
-
-  // const encrytedData = xor_encrypt(key.toString(), data.toString());
-  // return b64_encode(encrytedData);
 
   function encode(key, data) {
     const encrytedData = xor_encrypt(key.toString(), data.toString());
@@ -51,6 +46,7 @@ const XORCipher {
     const decodedData = b64_decode(encrytedData);
     return xor_decrypt(key.toString(), decodedData.toString());
   }
+
 };
 
 function b64_encode(data) {
@@ -100,17 +96,11 @@ function keyCharAt(key, i) {
 }
 
 function xor_encrypt(key, data) {
-  // return _.map(data, function (c, i) {
-  //   return c.charCodeAt(0) ^ keyCharAt(key, i);
-  // });
   return data.split('').map((c, i) => c.charCodeAt(0) ^ keyCharAt(key, i));
 }
 
 function xor_decrypt(key, data) {
   return data.split('').map((c, i) => String.fromCharCode(c ^ keyCharAt(key, i))).join(''); 
-  // return _.map(data, function (c, i) {
-  //   return String.fromCharCode(c ^ keyCharAt(key, i));
-  // }).join("");
 }
 
 export default XORCipher;
